@@ -33,7 +33,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
        ];
 
        List<String> resposta = perguntas[_perguntaSelecionada].cast()['resposta'];
-       List<Widget> widgets = resposta.map((t) => Resposta);
+
        /*for( String  textoResp in resposta ){
           widgets.add(Resposta(textoResp, _responder));
        }*/
@@ -46,7 +46,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
         body: Column(
           children: [
             Questao(perguntas[_perguntaSelecionada]['texto'] .toString()),
-            ...resposta,
+           ...resposta.map((t) => Resposta(t,_responder)).toList(),
           ],
         ),
       ),

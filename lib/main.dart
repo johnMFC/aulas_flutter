@@ -1,54 +1,71 @@
 import 'package:flutter/material.dart';
-import './questao.dart';
-import './respostas.dart';
+import './questionario.dart';
+import './resultados.dart';
 
 void main() => runApp(const PerguntaApp());
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
+  final _perguntas = const [
+    {
+      'texto': 'Qual é a sua cor favorita?',
+      'respostas': 
+      [
+      {'texto':'Preto','nota':10}, 
+   {'texto':'Vermelho','nota':5},
+      {'texto':'Verde','nota':6}, 
+     {'texto':'Branco','nota':8},
+      ],
+    },
+    {
+      'texto': 'Qual é o seu animal favorito?',
+      'respostas': 
+      [
+        {'texto':'Coelho','nota':10}, 
+        {'texto':'Cobra' ,'nota':5},
+        {'texto':'Elefante','nota':3},
+        {'texto':'Leão'  ,'nota':2},
+          ],
+    },
+    {
+      'texto': 'Qual é o seu instrutor favorito?',
+      'respostas': 
+      [
+        {'texto''Maria','notas':10 }, 
+        {'texto''João' ,'notas':5 }, 
+        {'texto''Leo'  ,'notas':8 },
+        {'texto''Pedro','notas':7 },
+        ],
+    },
+  ];
 
   void _responder() {
-    setState(() {
-      _perguntaSelecionada++;
-    });
-    print(_perguntaSelecionada);
+    if (temPerguntaSelecionada) {
+      setState(() {
+        _perguntaSelecionada++;
+      });
+    }
   }
+   bool get temPerguntaSelecionada {
+    return _perguntaSelecionada < _perguntas.length;
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    final perguntas = [
-      { 
-        'texto' : ' Qual é sua cor favorita?',
-        'resposta' : [ 'Preto','Vermelho', 'Laranja','Roxo'],
-
-      },
-      {
-        'texto': 'Qual é o seu animal favorito?',
-        'resposta' : [ 'Cachorro','Coelho', 'Gato','Leão' ],
-      },
-      {
-        'texto' : 'Qual é seu instrutor favorito ?',
-        'resposta' : [ 'Maria','joão', 'John','vitor' ],
-      }
-       ];
-
-       List<String> resposta = perguntas[_perguntaSelecionada].cast()['resposta'];
-
-       /*for( String  textoResp in resposta ){
-          widgets.add(Resposta(textoResp, _responder));
-       }*/
-
+   
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Perguntas'),
         ),
-        body: Column(
-          children: [
-            Questao(perguntas[_perguntaSelecionada]['texto'] .toString()),
-           ...resposta.map((t) => Resposta(t,_responder)).toList(),
-          ],
-        ),
+        body: temPerguntaSelecionada
+            ? Questionario(
+                perguntas: _perguntas,
+                perguntaSelecionada: _perguntaSelecionada,
+                quandoResponder: _responder,
+              )
+              :Resultado(),
       ),
     );
   }

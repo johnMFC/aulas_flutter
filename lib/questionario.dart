@@ -6,7 +6,7 @@ class Questionario  extends StatelessWidget {
   @override
   final List <Map<String,Object>> perguntas;
   final int perguntaselecionada;
-  final void Function()quandoResponder;
+  final void Function(int)quandoResponder;
 
  Questionario({
     required this.perguntas,

@@ -11,41 +11,45 @@ class _PerguntaAppState extends State<PerguntaApp> {
       'texto': 'Qual é a sua cor favorita?',
       'respostas': 
       [
-      {'texto':'Preto','nota':10}, 
-   {'texto':'Vermelho','nota':5},
-      {'texto':'Verde','nota':6}, 
-     {'texto':'Branco','nota':8},
+        {'texto':'Preto','pontuação':10}, 
+        {'texto':'Vermelho','pontuação':5},
+        {'texto':'Verde','pontuação':6}, 
+        {'texto':'Branco','pontuação':8},
       ],
     },
     {
       'texto': 'Qual é o seu animal favorito?',
       'respostas': 
       [
-        {'texto':'Coelho','nota':10}, 
-        {'texto':'Cobra' ,'nota':5},
-        {'texto':'Elefante','nota':3},
-        {'texto':'Leão'  ,'nota':2},
-          ],
+          {'texto':'Coelho','pontação':10}, 
+          {'texto':'Cobra' ,'pontação':5},
+          {'texto':'Elefante','pontação':3},
+          {'texto':'Leão'  ,'pontação':2},
+      ],
     },
     {
       'texto': 'Qual é o seu instrutor favorito?',
       'respostas': 
       [
-        {'texto''Maria','notas':10 }, 
-        {'texto''João' ,'notas':5 }, 
-        {'texto''Leo'  ,'notas':8 },
-        {'texto''Pedro','notas':7 },
-        ],
+        {'texto':'Maria','pontuação':10 }, 
+        {'texto':'João' ,'pontuação':5 }, 
+        {'texto':'Leo'  ,'pontuação':8 },
+        {'texto':'Pedro','pontuação':7 },
+        
+      ],
     },
   ];
 
-  void _responder() {
+  void _responder(int pontuacao) {
     if (temPerguntaSelecionada) {
       setState(() {
         _perguntaSelecionada++;
+        _pontuacaoTotal += pontuacao;
       });
     }
+    print(_pontuacaoTotal);
   }
+
    bool get temPerguntaSelecionada {
     return _perguntaSelecionada < _perguntas.length;
   }
@@ -62,7 +66,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
         body: temPerguntaSelecionada
             ? Questionario(
                 perguntas: _perguntas,
-                perguntaSelecionada: _perguntaSelecionada,
+                perguntaselecionada: _perguntaSelecionada,
                 quandoResponder: _responder,
               )
               :Resultado(),

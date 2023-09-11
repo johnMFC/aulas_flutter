@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './questionario.dart';
-import './resultados.dart';
+import './resultado.dart';
 
 void main() => runApp(const PerguntaApp());
 
@@ -10,35 +10,31 @@ class _PerguntaAppState extends State<PerguntaApp> {
   final _perguntas = const [
     {
       'texto': 'Qual é a sua cor favorita?',
-      'respostas': 
-      [
-        {'texto':'Preto','pontuação':10}, 
-        {'texto':'Vermelho','pontuação':5},
-        {'texto':'Verde','pontuação':6}, 
-        {'texto':'Branco','pontuação':8},
+      'respostas': [
+        {'texto': 'Preto', 'pontuacao': 10},
+        {'texto': 'Vermelho', 'pontuacao': 5},
+        {'texto': 'Verde', 'pontuacao': 3},
+        {'texto': 'Branco', 'pontuacao': 1},
       ],
     },
     {
       'texto': 'Qual é o seu animal favorito?',
-      'respostas': 
-      [
-          {'texto':'Coelho','pontação':10}, 
-          {'texto':'Cobra' ,'pontação':5},
-          {'texto':'Elefante','pontação':3},
-          {'texto':'Leão'  ,'pontação':2},
+      'respostas': [
+        {'texto': 'Coelho', 'pontuacao': 10},
+        {'texto': 'Cobra', 'pontuacao': 5},
+        {'texto': 'Elefante', 'pontuacao': 3},
+        {'texto': 'Leão', 'pontuacao': 1},
       ],
     },
     {
       'texto': 'Qual é o seu instrutor favorito?',
-      'respostas': 
-      [
-        {'texto':'Maria','pontuação':10 }, 
-        {'texto':'João' ,'pontuação':5 }, 
-        {'texto':'Leo'  ,'pontuação':8 },
-        {'texto':'Pedro','pontuação':7 },
-        
+      'respostas': [
+        {'texto': 'Leo', 'pontuacao': 10},
+        {'texto': 'Maria', 'pontuacao': 5},
+        {'texto': 'João', 'pontuacao': 3},
+        {'texto': 'Pedro', 'pontuacao': 1},
       ],
-    },
+    }
   ];
 
   void _responder(int pontuacao) {
@@ -48,17 +44,16 @@ class _PerguntaAppState extends State<PerguntaApp> {
         _pontuacaoTotal += pontuacao;
       });
     }
+
     print(_pontuacaoTotal);
   }
 
-   bool get temPerguntaSelecionada {
+  bool get temPerguntaSelecionada {
     return _perguntaSelecionada < _perguntas.length;
   }
 
-
   @override
   Widget build(BuildContext context) {
-   
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -67,10 +62,10 @@ class _PerguntaAppState extends State<PerguntaApp> {
         body: temPerguntaSelecionada
             ? Questionario(
                 perguntas: _perguntas,
-                perguntaselecionada: _perguntaSelecionada,
+                perguntaSelecionada: _perguntaSelecionada,
                 quandoResponder: _responder,
               )
-              :Resultado(),
+            :Resultado(_pontuacaoTotal),
       ),
     );
   }

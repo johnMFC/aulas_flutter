@@ -1,4 +1,4 @@
-#Tue Aug 29 14:56:09 GMT-03:00 2023
+#Tue Sep 12 15:11:25 GMT-03:00 2023
 base.0=C\:\\Users\\User\\curso_flutter22\\aulas_perguntas2\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

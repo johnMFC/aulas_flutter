@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './questao.dart';
-import './resposta.dart';
+import './respostas.dart';
 
 class Questionario extends StatelessWidget {
   final List<Map<String, Object>> perguntas;
@@ -31,8 +31,8 @@ class Questionario extends StatelessWidget {
         ...respostas
           .map((resp) {
           return Resposta(
-          resp['texto'],
-          () => quandoResponder(resp['pontuacao'] toString()),
+            resp['texto'].toString(),
+            () => quandoResponder(int.parse(resp['pontuacao'].toString())),
           );
         }).toList(),
       ],
